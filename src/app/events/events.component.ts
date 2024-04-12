@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/Event-Service.service';
+import { Event } from '../shared/Event.model';
 
 @Component({
   selector: 'app-events',
@@ -7,7 +8,7 @@ import { EventService } from '../shared/Event-Service.service';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events: any[] = [];
+  events: Event[] = [];
   error: string = null;
   constructor(private eventService: EventService) { }
   
@@ -18,8 +19,8 @@ export class EventsComponent implements OnInit {
     this.eventService.fetchEvents().subscribe(
       {
         next: (resonseData) => {
-          console.log(resonseData);
-          this.events = resonseData;
+          console.log(resonseData.events);
+          this.events = resonseData.events;
         },
         error: (errorMessage) => {
           console.log(errorMessage);
