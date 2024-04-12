@@ -7,15 +7,17 @@ export class Event {
   constructor(
     public summary: string,
     public description: string,
-    public startDatetime: Date,
-    public endDatetime: Date,
+    public startDatetime: string,
+    public endDatetime: string,
     public location: string,
     public status: string,
     public visibility: string,
     public organizer: Organizer,
     public creator: Creator,
     public attendees: Attendee[],
-    public attachment: Attachment[],
-    public eventId?: number
+    public attachments: Attachment[],
+    public eventId?: number,
+    public creationTime?: string,
+    public updatedTime?: string
   ) {}
 }
