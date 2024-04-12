@@ -14,18 +14,27 @@ export class EventFormComponent {
   error: string = null;
   data: Event;
 
-  constructor(private eventService: EventService,private router:Router) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
     this.isLoading = true;
+    const startTime = new Date(form.value.startTime);
+    const endTime = new Date(form.value.endTime);
+    const isoString1 = startTime.toISOString(); // Convert to ISO 8601 string
+    const isoString2 = endTime.toISOString();
+    const timezoneOffset = '+02:00'; // Your desired timezone offset
+
+    const formattedDate1 = isoString1.slice(0, 19) + timezoneOffset;
+    const formattedDate2 = isoString2.slice(0, 19) + timezoneOffset;
+    console.log(startTime);
     this.data = {
       summary: form.value.summary,
       description: form.value.description,
-      startDatetime: form.value.startTime,
-      endDatetime: form.value.endTime,
+      startDatetime: formattedDate1,
+      endDatetime: formattedDate2,
       location: form.value.location,
       status: form.value.status,
       visibility: form.value.visibility,
@@ -47,12 +56,13 @@ export class EventFormComponent {
           self: true,
         },
       ],
-      attachment: [
+      attachments: [
         {
           fileUrl: form.value.fileUrl,
           title: form.value.title,
           mimeType: form.value.mimeType,
           iconLink: form.value.iconLink,
+          fileId:form.value.fileId
         },
       ],
     };
