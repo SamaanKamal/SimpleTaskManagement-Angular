@@ -4,6 +4,7 @@ export class Attachment {
     public title: string,
     public mimeType: string,
     public iconLink: string,
+    public fileId: string,
     public id?: number
   ) {}
 }
