@@ -15,6 +15,7 @@ export class Event {
     public organizer: Organizer,
     public creator: Creator,
     public attendees: Attendee[],
-    public attachment: Attachment[]
+    public attachment: Attachment[],
+    public eventId?: number
   ) {}
 }
