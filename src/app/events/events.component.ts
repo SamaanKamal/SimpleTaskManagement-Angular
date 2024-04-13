@@ -21,6 +21,7 @@ export class EventsComponent implements OnInit {
         next: (resonseData) => {
           console.log(resonseData.events);
           this.events = resonseData.events;
+          console.log(navigator.onLine);
         },
         error: (errorMessage) => {
           console.log(errorMessage);
