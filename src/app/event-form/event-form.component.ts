@@ -60,7 +60,7 @@ export class EventFormComponent {
         {
           fileUrl: form.value.fileUrl,
           title: form.value.title,
-          mimeType: form.value.mimeType,
+          mimetype: form.value.mimetype,
           iconLink: form.value.iconLink,
           fileId:form.value.fileId
         },
