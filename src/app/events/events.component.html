@@ -65,8 +65,14 @@
           </ul>
         </div>
         <div class="actions">
-          <button class="btn">Edit Event</button>
-          <button class="btn">Delete Event</button>
+          <button
+            class="btn"
+            type="button"
+            (click)="onEditEvent(event.eventId,event)"
+          >
+            Edit Event
+          </button>
+          <button class="btn" type="button">Delete Event</button>
         </div>
       </div>
     </li>

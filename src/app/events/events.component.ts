@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/Event-Service.service';
 import { Event } from '../shared/Event.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -10,7 +11,7 @@ import { Event } from '../shared/Event.model';
 export class EventsComponent implements OnInit {
   events: Event[] = [];
   error: string = null;
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService,private router:Router) { }
   
   ngOnInit(): void {
     this.fetchEvents();
@@ -30,4 +31,8 @@ export class EventsComponent implements OnInit {
       }
     );
   }
+  onEditEvent(eventId: string,event:Event) {
+    this.router.navigate(['/update-event',eventId],{ state: { event } });
+  }
 }
+
