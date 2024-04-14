@@ -1,0 +1,98 @@
+<div *ngIf="isLoading" class="spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="isDeleteSuccess">
+  <p>{{ message }}</p>
+</div>
+<div class="events-container" *ngIf="UpdatedEvent">
+  <div *ngIf="!isDeleteSuccess">
+    <div *ngIf="!isLoading">
+      <h2>Event with id: {{ UpdatedEvent.eventId }}</h2>
+      <div class="event-details">
+        <h1>event ID: {{ UpdatedEvent.eventId }}</h1>
+        <h3>Summary: {{ UpdatedEvent.summary }}</h3>
+        <p><strong>Description:</strong> {{ UpdatedEvent.description }}</p>
+        <p><strong>Location:</strong> {{ UpdatedEvent.location }}</p>
+        <p>
+          <strong>Start Time:</strong>
+          {{ UpdatedEvent.startDatetime | date : "medium" }}
+        </p>
+        <p>
+          <strong>End Time:</strong>
+          {{ UpdatedEvent.endDatetime | date : "medium" }}
+        </p>
+        <p><strong>Status:</strong> {{ UpdatedEvent.status }}</p>
+        <p><strong>Visibility:</strong> {{ UpdatedEvent.visibility }}</p>
+        <div class="organizer-details">
+          <h3>Organizer:</h3>
+          <div class="organizer-group">
+            <p>
+              <strong>Organizer ID:</strong>
+              {{ UpdatedEvent.organizer.organizerId }}
+            </p>
+            <p>
+              <strong>Organizer:</strong> {{ UpdatedEvent.organizer.displayName }}
+            </p>
+            <p><strong>Email:</strong> {{ UpdatedEvent.organizer.email }}</p>
+          </div>
+        </div>
+        <div class="creator-details">
+          <h3>Creator:</h3>
+          <div class="creator-group">
+            <p>
+              <strong>Creator ID:</strong> {{ UpdatedEvent.creator.creatorId }}
+            </p>
+            <p>
+              <strong>Creator:</strong> {{ UpdatedEvent.creator.displayName }}
+            </p>
+            <p><strong>Email:</strong> {{ UpdatedEvent.creator.email }}</p>
+          </div>
+        </div>
+        <div class="attendees-list">
+          <h3>Attendees:</h3>
+          <ul>
+            <li *ngFor="let attendee of UpdatedEvent.attendees">
+              <div class="attendee-details">
+                <p><strong>Attendee ID:</strong>{{ attendee.attendeeId }}</p>
+                <p><strong>Name:</strong> {{ attendee.displayName }}</p>
+                <p><strong>Email:</strong> {{ attendee.email }}</p>
+                <p>
+                  <strong>Response Status:</strong>
+                  {{ attendee.responseStatus }}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="attachments-list">
+          <h3>Attachments:</h3>
+          <ul>
+            <li *ngFor="let attachment of UpdatedEvent.attachments">
+              <div class="attachment-details">
+                <p><strong>Attachment ID:</strong>{{ attachment.id }}</p>
+                <p><strong>Title:</strong> {{ attachment.title }}</p>
+                <p><strong>File URL:</strong> {{ attachment.fileUrl }}</p>
+                <p><strong>Mime Type:</strong> {{ attachment.mimetype }}</p>
+                <p><strong>Icon Link:</strong> {{ attachment.iconLink }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="actions">
+          <button class="btn btn-light" type="button" (click)="onNavigation()">
+            Go Back to Events
+          </button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="deleteEvent()"
+            *ngIf="!isLoading && !isDeleteSuccess"
+          >
+            Delete Event
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

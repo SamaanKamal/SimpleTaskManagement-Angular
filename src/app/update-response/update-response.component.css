@@ -1,0 +1,120 @@
+.events-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f0f0f0; 
+  }
+  
+  .event-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .event-item {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .event-details {
+    margin-bottom: 15px;
+  }
+  .event-details h3 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+    }
+  
+  .organizer-details,
+  .creator-details,
+  .attendees-list,
+  .attachments-list {
+    margin-top: 15px;
+  }
+  
+  .organizer-group,.creator-group {
+      border: 1px solid #eee;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 3px;
+  }
+  
+  .attendees-list h3,
+  .attachments-list h3 {
+    margin-top: 0;
+  }
+  
+  .attendee-details,
+  .attachment-details {
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+  }
+  
+  .attachment-details {
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  h3 {
+    color: #666;
+  }
+  
+  strong {
+    color: #007bff; 
+  }
+  
+  p {
+    color: #555;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  .btn-light {
+    background-color: #007bff; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3; 
+  }
+  
+  .icon {
+    font-size: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  .icon-rsvp::before {
+    content: "\2605"; 
+  }
+  
+  .icon-calendar::before {
+    content: "\1F4C5"; 
+  }
+  
