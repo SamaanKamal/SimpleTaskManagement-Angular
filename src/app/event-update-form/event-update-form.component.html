@@ -1,0 +1,443 @@
+<div class="row">
+  <div class="col-xs-12 col-md-offset-3">
+    <div *ngIf="isLoading" class="spinner">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      <h2 class="text-center">Event Update Form</h2>
+      <form
+        #eventForm="ngForm"
+        (ngSubmit)="onSubmit(eventForm)"
+        class="event-form"
+      >
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          <input
+            id="summary"
+            type="text"
+            class="form-control"
+            name="summary"
+            ngModel
+            [(ngModel)]="event.summary"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            id="description"
+            type="text"
+            class="form-control"
+            name="description"
+            ngModel
+            required
+            [(ngModel)]="event.description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="startTime">Start Time</label>
+          <input
+            id="startTime"
+            type="text"
+            class="form-control"
+            name="startTime"
+            ngModel
+            required
+            [(ngModel)]="event.startDatetime"
+          />
+        </div>
+        <div class="form-group">
+          <label for="endTime">End Time</label>
+          <input
+            id="endTime"
+            type="text"
+            class="form-control"
+            name="endTime"
+            ngModel
+            required
+            [(ngModel)]="event.endDatetime"
+          />
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input
+            id="location"
+            type="text"
+            class="form-control"
+            name="location"
+            ngModel
+            required
+            [(ngModel)]="event.location"
+          />
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <input
+            id="status"
+            type="text"
+            class="form-control"
+            name="status"
+            ngModel
+            required
+            [(ngModel)]="event.status"
+          />
+        </div>
+        <div class="form-group">
+          <label for="visibility">Visibility</label>
+          <input
+            id="visibility"
+            type="text"
+            class="form-control"
+            name="visibility"
+            ngModel
+            required
+            [(ngModel)]="event.visibility"
+          />
+        </div>
+        <div class="form-group">
+          <span class="details-label">Organizer Details:</span>
+
+          <div class="form-group">
+            <label for="organizerId">Organizer ID:</label>
+            <input
+              id="organizerId"
+              type="number"
+              class="form-control"
+              name="organizerId"
+              ngModel
+              required
+              [(ngModel)]="event.organizer.organizerId"
+            />
+          </div>
+          <div class="form-group">
+            <label for="organizerEmail">Organizer Email:</label>
+            <input
+              id="organizerEmail"
+              type="email"
+              class="form-control"
+              name="organizerEmail"
+              ngModel
+              required
+              [(ngModel)]="event.organizer.email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="organizerDisplayName">Organizer Display Name:</label>
+            <input
+              id="organizerDisplayName"
+              type="text"
+              class="form-control"
+              name="organizerDisplayName"
+              ngModel
+              required
+              [(ngModel)]="event.organizer.displayName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="organizerSelf">Include Organizer</label>
+            <div class="custom-radio">
+              <input
+                type="radio"
+                id="organizerYes"
+                name="organizerSelected"
+                value="yes"
+                [(ngModel)]="organizerSelected"
+              />
+              <label for="organizerYes">Yes</label>
+              <input
+                type="radio"
+                id="organizerNo"
+                name="organizerSelf"
+                value="no"
+                [(ngModel)]="organizerSelected"
+              />
+              <label for="organizerNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="details-label">Creator Details:</span>
+          <div class="form-group">
+            <label for="creatorId">Creator ID:</label>
+            <input
+              id="creatorId"
+              type="number"
+              class="form-control"
+              name="creatorId"
+              ngModel
+              required
+              [(ngModel)]="event.creator.creatorId"
+            />
+          </div>
+          <div class="form-group">
+            <label for="creatorEmail">Creator Email:</label>
+            <input
+              id="creatorEmail"
+              type="email"
+              class="form-control"
+              name="creatorEmail"
+              ngModel
+              required
+              [(ngModel)]="event.creator.email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="creatorDisplayName">Creator Display Name:</label>
+            <input
+              id="creatorDisplayName"
+              type="text"
+              class="form-control"
+              name="creatorDisplayName"
+              ngModel
+              required
+              [(ngModel)]="event.creator.displayName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="creatorSelf">Include Creator</label>
+            <div class="custom-radio">
+              <input
+                type="radio"
+                id="creatorYes"
+                name="creatorSelected"
+                value="yes"
+                [(ngModel)]="creatorSelected"
+              />
+              <label for="creatorYes">Yes</label>
+              <input
+                type="radio"
+                id="creatorNo"
+                name="creatorSelected"
+                value="no"
+                [(ngModel)]="creatorSelected"
+              />
+              <label for="creatorNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="details-label">Attendees Details:</span>
+          <div class="form-group">
+            <label for="attendeeId">Attendee ID:</label>
+            <input
+              id="attendeeId"
+              type="number"
+              class="form-control"
+              name="attendeeId"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].attendeeId"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              name="email"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="displayName">Display Name</label>
+            <input
+              id="displayName"
+              type="text"
+              class="form-control"
+              name="displayName"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].displayName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="responseStatus">Response Status</label>
+            <input
+              id="responseStatus"
+              type="text"
+              class="form-control"
+              name="responseStatus"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].responseStatus"
+            />
+          </div>
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <input
+              id="comment"
+              type="text"
+              class="form-control"
+              name="comment"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].comment"
+            />
+          </div>
+          <div class="form-group">
+            <label for="additionalGuests">Aditional Guests</label>
+            <input
+              id="additionalGuests"
+              type="number"
+              class="form-control"
+              name="additionalGuests"
+              ngModel
+              required
+              [(ngModel)]="event.attendees[0].attendeeId"
+            />
+          </div>
+          <div class="form-group">
+            <label for="attendeeSelf">Include Attendee</label>
+            <div class="custom-radio">
+              <input
+                type="radio"
+                id="attendeeYes"
+                name="attendeeSelected"
+                value="yes"
+                [(ngModel)]="attendeeSelected"
+              />
+              <label for="creatorYes">Yes</label>
+              <input
+                type="radio"
+                id="attendeeNo"
+                name="attendeeSelected"
+                value="no"
+                [(ngModel)]="attendeeSelected"
+              />
+              <label for="attendeeNo">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="resource">Include Resource</label>
+            <div class="custom-radio">
+              <input
+                type="radio"
+                id="resourceYes"
+                name="resourceSelected"
+                value="yes"
+                [(ngModel)]="resourceSelected"
+              />
+              <label for="resourceYes">Yes</label>
+              <input
+                type="radio"
+                id="resourceNo"
+                name="resourceSelected"
+                value="no"
+                [(ngModel)]="resourceSelected"
+              />
+              <label for="resourceNo">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="optional">Include Optional</label>
+            <div class="custom-radio">
+              <input
+                type="radio"
+                id="optionalYes"
+                name="optionalSelected"
+                value="yes"
+                [(ngModel)]="optionalSelected"
+              />
+              <label for="optionalYes">Yes</label>
+              <input
+                type="radio"
+                id="optionalNo"
+                name="optionalSelected"
+                value="no"
+                [(ngModel)]="optionalSelected"
+              />
+              <label for="optionalNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="details-label">Attachment Details:</span>
+          <div class="form-group">
+            <label for="fileId">File ID:</label>
+            <input
+              id="fileId"
+              type="number"
+              class="form-control"
+              name="fileId"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].id"
+            />
+          </div>
+          <div class="form-group">
+            <label for="fileUrl">File Url</label>
+            <input
+              id="fileUrl"
+              type="text"
+              class="form-control"
+              name="fileUrl"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].fileUrl"
+            />
+          </div>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              class="form-control"
+              name="title"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="mimetype">Mime Type</label>
+            <input
+              id="mimetype"
+              type="text"
+              class="form-control"
+              name="mimetype"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].mimetype"
+            />
+          </div>
+          <div class="form-group">
+            <label for="iconLink">icon Link</label>
+            <input
+              id="iconLink"
+              type="text"
+              class="form-control"
+              name="iconLink"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].iconLink"
+            />
+          </div>
+          <div class="form-group">
+            <label for="fileIdPath">File ID Path</label>
+            <input
+              id="fileIdPath"
+              type="text"
+              class="form-control"
+              name="fileIdPath"
+              ngModel
+              required
+              [(ngModel)]="event.attachments[0].fileId"
+            />
+          </div>
+        </div>
+        <div class="form-group create-btn">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!eventForm.valid"
+          >
+            Update Event
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
