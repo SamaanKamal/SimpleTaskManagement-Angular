@@ -9,9 +9,13 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { EventFormComponent } from './event-form/event-form.component';
 import { EventIneterceptorService } from './shared/EventInterceptor.service';
+import { EventUpdateFormComponent } from './event-update-form/event-update-form.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { UpdateResponseComponent } from './update-response/update-response.component';
+import { CreationResponseComponent } from './creation-response/creation-response.component';
 
 @NgModule({
-  declarations: [AppComponent, EventsComponent, HeaderComponent,EventFormComponent],
+  declarations: [AppComponent, EventsComponent, HeaderComponent,EventFormComponent, EventUpdateFormComponent, LoadingSpinnerComponent, UpdateResponseComponent, CreationResponseComponent],
   imports: [BrowserModule, FormsModule,HttpClientModule, AppRoutingModule,],
   providers: [
     {
