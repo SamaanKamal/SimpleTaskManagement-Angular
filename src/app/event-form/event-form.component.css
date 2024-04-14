@@ -7,6 +7,10 @@
 .form-group {
   margin-bottom: 20px;
 }
+.text-center {
+  text-align: center;
+  margin: 12px;
+}
 
 label {
   font-weight: bold;
@@ -28,15 +32,34 @@ input[type="number"] {
   border-radius: 5px;
   cursor: pointer;
 }
+.create-btn {
+  text-align: center;
+}
 
 .btn-primary:hover {
   background-color: #0056b3;
 }
 .details-label {
-    font-weight: bold;
-    font-size: 16px;
-    color: red; 
-    margin-bottom: 5px; 
-    display: block; 
-  }
-  
+  font-weight: bold;
+  font-size: 16px;
+  color: red;
+  margin-bottom: 5px;
+  display: block;
+}
+.custom-radio input[type="radio"] {
+  margin: 8px;
+}
+
+.custom-radio label {
+  cursor: pointer;
+  margin: 8px;
+  padding: 5px;
+}
+
+.custom-radio label:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-radio input[type="radio"]:label {
+  color: #fff;
+}
