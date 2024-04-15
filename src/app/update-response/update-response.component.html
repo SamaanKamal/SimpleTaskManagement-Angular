@@ -1,8 +1,10 @@
 <div *ngIf="isLoading" class="spinner">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<div *ngIf="isDeleteSuccess">
-  <p>{{ message }}</p>
+<div class="event-container" *ngIf="isDeleteSuccess">
+  <h1>{{isDeleteSuccess? "Successful" :"Failed"}}</h1>
+  <div *ngIf="isDeleteSuccess" class="response-message">{{ message }}</div>
+  <button class="btn-light" (click)="onNavigation()">Back to Events</button>
 </div>
 <div class="events-container" *ngIf="UpdatedEvent">
   <div *ngIf="!isDeleteSuccess">
@@ -10,7 +12,7 @@
       <h2>Event with id: {{ UpdatedEvent.eventId }}</h2>
       <div class="event-details">
         <h1>event ID: {{ UpdatedEvent.eventId }}</h1>
-        <h3>Summary: {{ UpdatedEvent.summary }}</h3>
+        <p><strong>Summary:</strong> {{ UpdatedEvent.summary }}</p>
         <p><strong>Description:</strong> {{ UpdatedEvent.description }}</p>
         <p><strong>Location:</strong> {{ UpdatedEvent.location }}</p>
         <p>
@@ -78,7 +80,7 @@
             </li>
           </ul>
         </div>
-        <div class="actions">
+        <div class="actions" *ngIf="(UpdatedEvent || isDeleteSuccess)&&!isLoading">
           <button class="btn btn-light" type="button" (click)="onNavigation()">
             Go Back to Events
           </button>
