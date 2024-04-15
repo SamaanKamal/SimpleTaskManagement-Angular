@@ -1,0 +1,6 @@
+<div class="event-container">
+    <h1>{{success? "Successful" :"Failed"}}</h1>
+    <div *ngIf="responseMessage" class="response-message">{{ responseMessage }}</div>
+    <button class="btn" (click)="navigateToEvents()">Back to Events</button>
+  </div>
+  

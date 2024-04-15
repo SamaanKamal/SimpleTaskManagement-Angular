@@ -13,9 +13,10 @@ import { EventUpdateFormComponent } from './event-update-form/event-update-form.
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { UpdateResponseComponent } from './update-response/update-response.component';
 import { CreationResponseComponent } from './creation-response/creation-response.component';
+import { DeletionResponseComponent } from './deletion-response/deletion-response.component';
 
 @NgModule({
-  declarations: [AppComponent, EventsComponent, HeaderComponent,EventFormComponent, EventUpdateFormComponent, LoadingSpinnerComponent, UpdateResponseComponent, CreationResponseComponent],
+  declarations: [AppComponent, EventsComponent, HeaderComponent,EventFormComponent, EventUpdateFormComponent, LoadingSpinnerComponent, UpdateResponseComponent, CreationResponseComponent, DeletionResponseComponent],
   imports: [BrowserModule, FormsModule,HttpClientModule, AppRoutingModule,],
   providers: [
     {
