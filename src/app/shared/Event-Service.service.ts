@@ -1,6 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, map, of, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  map,
+  of,
+  throwError,
+} from 'rxjs';
 import { Event } from './Event.model';
 
 @Injectable({
@@ -9,9 +17,9 @@ import { Event } from './Event.model';
 export class EventService {
   private apiUrl: string = '/api/Events';
   private url: string = 'http://localhost:8080';
-  private responseMessage = new Subject<string>();
-  
-  constructor(private http: HttpClient) { }
+  private responseMessage = new BehaviorSubject<string>(null);
+
+  constructor(private http: HttpClient) {}
 
   setResponseMessage(response: string) {
     this.responseMessage.next(response);
@@ -41,8 +49,7 @@ export class EventService {
         );
         return throwError(() => {
           const newError = new Error(
-            'Error fetching event:'+
-            error + ' with id : ' + eventId
+            'Error fetching event:' + error + ' with id : ' + eventId
           );
           return newError;
         });
@@ -51,10 +58,22 @@ export class EventService {
   }
   createEvent(eventData: Event) {
     return this.http
-      .post<string>(`${this.url}${this.apiUrl}/createEvent`, eventData)
+      .post<string>(`${this.url}${this.apiUrl}/createEvent`, eventData, {responseType:'text' as 'json' })
       .pipe(
+        // map((responseMessage) => {
+        //   this.responseMessage.next(responseMessage);
+        // }),
         catchError((error) => {
           console.error('Error creating event:', error);
+          let errorMessage = 'Unknown error occurred';
+          // if (
+          //   error instanceof HttpErrorResponse &&
+          //   error.error instanceof ErrorEvent
+          // ) {
+          //   errorMessage = `Error: ${error.error.message}`;
+          // } else if (error instanceof HttpErrorResponse) {
+          //   errorMessage = `Error: ${error.status} - ${error.statusText}`;
+          // }
           return throwError(() => {
             const newError = new Error('Error creating event:' + error);
             return newError;
@@ -82,7 +101,7 @@ export class EventService {
   }
   deleteEvent(eventId: number) {
     return this.http
-      .delete<string>(`${this.url}${this.apiUrl}/deleteEvent/${eventId}`)
+      .delete<string>(`${this.url}${this.apiUrl}/deleteEvent/${eventId}`, {responseType:'text' as 'json' })
       .pipe(
         catchError((error) => {
           console.error(
