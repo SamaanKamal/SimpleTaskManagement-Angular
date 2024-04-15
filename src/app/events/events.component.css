@@ -1,7 +1,7 @@
 .events-container {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
 }
 
 .event-list {
@@ -13,18 +13,18 @@
   border: 1px solid #ddd;
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #fff; 
+  background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-details {
   margin-bottom: 15px;
 }
 .event-details h3 {
-    padding-top: 15px;
-    padding-bottom: 10px;
-  }
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
 
 .organizer-details,
 .creator-details,
@@ -33,11 +33,12 @@
   margin-top: 15px;
 }
 
-.organizer-group,.creator-group {
-    border: 1px solid #eee;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 3px;
+.organizer-group,
+.creator-group {
+  border: 1px solid #eee;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 3px;
 }
 
 .attendees-list h3,
@@ -70,7 +71,7 @@ h3 {
 }
 
 strong {
-  color: #007bff; 
+  color: #007bff;
 }
 
 p {
@@ -89,9 +90,18 @@ a:hover {
 .actions {
   margin-top: 20px;
 }
-
 .btn {
-  background-color: #007bff; 
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-light {
+  background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -101,7 +111,7 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
 }
 
 .icon {
@@ -111,9 +121,9 @@ a:hover {
 }
 
 .icon-rsvp::before {
-  content: "\2605"; 
+  content: "\2605";
 }
 
 .icon-calendar::before {
-  content: "\1F4C5"; 
+  content: "\1F4C5";
 }

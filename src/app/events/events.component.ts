@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 export class EventsComponent implements OnInit {
   events: Event[] = [];
   error: string = null;
+  isLoading = false;
+  isDeleteSuccess: boolean = false;
+  message: string = null;
+
   constructor(private eventService: EventService,private router:Router) { }
   
   ngOnInit(): void {
@@ -33,6 +37,27 @@ export class EventsComponent implements OnInit {
   }
   onEditEvent(eventId: string,event:Event) {
     this.router.navigate(['/update-event',eventId],{ state: { event } });
+  }
+  
+  onDeleteEvent(eventId:number) {
+    this.isLoading = true;
+    
+    this.eventService.deleteEvent(eventId).subscribe({
+      next: (resonseData) => {
+        this.isLoading = false;
+        console.log(resonseData);
+        this.isDeleteSuccess = true;
+        this.message = resonseData;
+        this.eventService.setResponseMessage(this.message);
+        console.log(this.isDeleteSuccess);
+        this.router.navigate(['./deleted-Event',eventId]);
+      },
+      error: (errorMessage) => {
+        this.isLoading = false;
+        console.log(errorMessage);
+        this.error = errorMessage;
+      },
+    });
   }
 }
 

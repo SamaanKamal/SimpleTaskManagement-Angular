@@ -1,4 +1,7 @@
-<div class="events-container">
+<div *ngIf="isLoading" class="spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="events-container" *ngIf="!isLoading" >
   <h2>Events</h2>
   <ul class="event-list">
     <li *ngFor="let event of events" class="event-item">
@@ -66,13 +69,13 @@
         </div>
         <div class="actions">
           <button
-            class="btn"
+            class="btn btn-light"
             type="button"
             (click)="onEditEvent(event.eventId,event)"
           >
             Edit Event
           </button>
-          <button class="btn" type="button">Delete Event</button>
+          <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.eventId)">Delete Event</button>
         </div>
       </div>
     </li>
